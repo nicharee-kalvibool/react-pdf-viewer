@@ -1,36 +1,27 @@
 {
-  "compilerOptions": {
-    "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noFallthroughCasesInSwitch": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "jsx": "react-jsx",
-    "declaration": true,
-    "declarationDir": "types",
-    "sourceMap": true,
-    "outDir": "dist",
-    "emitDeclarationOnly": true
-  },
-  "include": [
-    "src"
-  ],
-  "exclude": [
-    "dist",
-    "node_modules",
-    "src/**/*.test.tsx",
-    "src/**/*.stories.tsx"
-  ]
+    "compilerOptions": {
+        "target": "es6",
+        "module": "es6",
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "removeComments": true,
+        "preserveConstEnums": true,
+        "noImplicitAny": true,
+        "strictNullChecks": false,
+        "allowSyntheticDefaultImports": true,
+        "strict": true,
+        "forceConsistentCasingInFileNames": true,
+        "noFallthroughCasesInSwitch": true,
+        "moduleResolution": "node",
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "jsx": "react-jsx",
+        "declaration": true,
+        "declarationDir": "types",
+        "sourceMap": true,
+        "outDir": "dist",
+        "emitDeclarationOnly": true
+    },
+    "include": ["src/**/*", "src/**/*.js", "src/declaration.d.ts"],
+    "exclude": ["dist", "node_modules", "src/**/*.test.tsx", "src/**/*.stories.tsx", "**/*.spec.ts"]
 }
