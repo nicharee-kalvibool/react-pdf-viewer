@@ -1,7 +1,5 @@
 import logo from "./logo.svg";
 import "./App.css";
-import PDFViewer from "./components/PDFViewer";
-import file from "./assets/example/pdf/example-pdf.pdf";
 
 function App() {
     return (
@@ -24,13 +22,13 @@ function App() {
                     Learn React
                 </a>
             </header>
-            <div className="pdf-container">
+            {/* <div className="pdf-container">
                 <div className="pdf-box">
                     <div className="pdf">
                         <PDFViewer src={file} />
                     </div>
                 </div>
-            </div>
+            </div> */}
         </div>
     );
 }
