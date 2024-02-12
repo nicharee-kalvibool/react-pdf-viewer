@@ -1,18 +1,20 @@
+import path from "path";
 import * as PDFJS from "pdfjs-dist";
 // @ts-ignore
 import { WorkerMessageHandler } from "pdfjs-dist/build/pdf.worker.mjs";
 import { GetViewportParameters, RenderParameters } from "pdfjs-dist/types/src/display/api";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 PDFJS.GlobalWorkerOptions.workerSrc = WorkerMessageHandler;
 
 type PDFRendererProps = {
     id: string;
-    src: string | ArrayBuffer;
+    src: string;
     defaultPage?: number;
     viewport?: GetViewportParameters;
 };
 
 type PDFWorkingProps = {
+    filename: string;
     isLoading: boolean;
     errors: object;
     totalPages: number;
@@ -53,7 +55,7 @@ const useRenderPDF = ({ id, src, defaultPage = 1, viewport = DefaultParams }: PD
     const [total_pages, setTotalPages] = useState<number>(0);
     const [scale, setScale] = useState<number>(3);
     const [active_page, setActivePage] = useState(defaultPage);
-    // const [file_name, setFileName] = useState<string>("");
+    const [file_name, setFileName] = useState<string>("");
 
     const render: () => Promise<void> = (): Promise<void> => {
         return new Promise(async (resolve, rejecte) => {
@@ -74,9 +76,6 @@ const useRenderPDF = ({ id, src, defaultPage = 1, viewport = DefaultParams }: PD
                     context.clearRect(0, 0, canvas.width, canvas.height);
                     context.beginPath();
                 }
-                // context.scale(ZOOM_SCALE[scale].size, ZOOM_SCALE[scale].size);
-                // canvas.height = viewports.height;
-                // canvas.width = viewports.width;
 
                 canvas.height = viewports.height * ZOOM_SCALE[scale].size;
                 canvas.width = viewports.width * ZOOM_SCALE[scale].size;
@@ -130,13 +129,27 @@ const useRenderPDF = ({ id, src, defaultPage = 1, viewport = DefaultParams }: PD
         }
     };
 
+    useEffect(() => {
+        if(src){
+            const filename = src.replace(/^.*[\\/]/, '');
+
+        if (filename) {
+            setFileName(filename);
+        } else {
+            setFileName("undefiled.pdf");
+        }
+        }
+        
+    }, [src]);
+
     return {
+        filename: file_name,
         isLoading: is_loading,
         errors: errors,
         totalPages: total_pages,
         activePage: active_page,
-        scale: scale,
-        render: render,
+        scale,
+        render,
         onUpdateActivePage: handleChangePage,
         nextPage: handleNextPage,
         previousPage: handlePreviousPage,
