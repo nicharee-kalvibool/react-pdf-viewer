@@ -10,7 +10,6 @@ import url from "@rollup/plugin-url";
 // import simplevars from "postcss-simple-vars";
 // import nested from "postcss-nested";
 import autoprefixer from "autoprefixer";
-import scss from "rollup-plugin-scss";
 
 const packageJson = require("./package.json");
 
@@ -40,6 +39,7 @@ export default [
             terser(),
             postcss({
                 plugins: [autoprefixer()],
+                inject: false,
                 extract: "react-pdf-viewer.css",
                 // modules: {
                 //     localsConvention: "camelCase",
@@ -47,7 +47,6 @@ export default [
                 // syntax: "postcss-scss",
                 // use: ["sass"],
             }),
-            scss(),
         ],
         external: ["react", "react-dom", "classnames"],
     },
