@@ -4,10 +4,12 @@ import typescript from "@rollup/plugin-typescript";
 import dts from "rollup-plugin-dts";
 import { terser } from "rollup-plugin-terser";
 import peerDepsExternal from "rollup-plugin-peer-deps-external";
-import sass from "rollup-plugin-sass";
+// import sass from "rollup-plugin-sass";
 import postcss from "rollup-plugin-postcss";
 import url from "@rollup/plugin-url";
-import styles from "rollup-plugin-styles";
+// import styles from "rollup-plugin-styles";
+// import babel from "rollup-plugin-babel";
+// import postcssModules from "postcss-modules";
 
 const packageJson = require("./package.json");
 
@@ -42,10 +44,14 @@ export default [
             //     modules: true,
             //     use: ["sass"],
             // }),
-            styles({
-                mode: "inject",
-                modules: true,
-                sass: sass
+            // styles({
+            //     mode: "inject",
+            //     modules: true,
+            //     sass: sass,
+            // }),
+            postcss({
+                getExportNamed: true,
+                extract: "dist/styles.css",
             }),
         ],
         external: ["react", "react-dom"],
