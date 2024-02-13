@@ -38,11 +38,9 @@ export default [
             typescript({ tsconfig: "./tsconfig.json" }),
             terser(),
             postcss({
-                sourceMap: true,
-
                 plugins: [autoprefixer(), simplevars(), nested()],
                 extensions: [".css", ".scss"],
-                extract: true,
+                extract: "react-pdf-viewer.css",
                 modules: {
                     localsConvention: "camelCase",
                 },
