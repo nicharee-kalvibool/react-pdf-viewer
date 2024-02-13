@@ -40,7 +40,7 @@ export default [
             postcss({
                 plugins: [autoprefixer(), simplevars(), nested()],
                 extensions: [".css"],
-                extract: "react-pdf-viewer.css",
+                extract: true,
                 sourceMap: true,
                 // modules: {
                 //     localsConvention: "camelCase",
