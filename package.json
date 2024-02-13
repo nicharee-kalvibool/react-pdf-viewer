@@ -6,6 +6,7 @@
   "module": "dist/esm/index.js",
   "types": "dist/index.d.ts",
   "dependencies": {
+    "@rollup/plugin-babel": "^6.0.4",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -29,11 +30,17 @@
     "url": "^0.11.3"
   },
   "scripts": {
+    "prebuild": "rm -rf dist",
+    "before-rollup": "tsc",
     "start": "react-scripts start",
-    "build": "rollup -c --bundleConfigAsCjs",
+    "build": "npm run prebuild && rollup -c",
+    "rollup-watch": "rollup -c -w",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "files": [
+    "dist"
+  ],
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -61,6 +68,7 @@
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-typescript": "^11.1.6",
     "rollup": "^2.79.1",
+    "rollup-plugin-babel": "^3.0.7",
     "rollup-plugin-dts": "^6.1.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-terser": "^7.0.2",

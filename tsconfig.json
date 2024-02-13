@@ -22,6 +22,6 @@
         "outDir": "dist",
         "emitDeclarationOnly": true
     },
-    "include": ["src/**/*", "src/**/*.js", "src/declaration.d.ts", "index.d.ts", "index.tsx"],
+    "include": ["src/**/*", "src/**/*.js", "src/declaration.d.ts"],
     "exclude": ["dist", "node_modules", "src/**/*.test.tsx", "src/**/*.stories.tsx", "**/*.spec.ts"]
 }

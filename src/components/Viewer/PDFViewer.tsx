@@ -4,13 +4,11 @@ import { isMobile, isTablet } from "react-device-detect";
 import useRenderPDF, { ZOOM_SCALE } from "../../utils/renderPDF";
 import { ChevronLeft, ChevronRight, Download, Loader, Maximize, Minimize, Minus, MoreVertical, Plus, ZoomIn } from "react-feather";
 import classNames from "classnames";
+import { PdfViewerProps } from "./PDFViewer.types";
 
-export type PDFViewerProps = {
-    src: string;
-};
 const regex = /(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/;
 
-const PDFViewer = ({ src }: PDFViewerProps) => {
+const PDFViewer = ({ src }: PdfViewerProps) => {
     const [open_option, setOpenOption] = useState(false);
     const [expand, setExpand] = useState(false);
     const [is_loading_download, setIsLoadingDownload] = useState(false);

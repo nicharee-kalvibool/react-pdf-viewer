@@ -1,43 +1,15 @@
-import path from "path";
 import * as PDFJS from "pdfjs-dist";
 // @ts-ignore
 import { WorkerMessageHandler } from "pdfjs-dist/build/pdf.worker.mjs";
 import { GetViewportParameters, RenderParameters } from "pdfjs-dist/types/src/display/api";
 import { useEffect, useState } from "react";
+import { PDFRendererProps, PDFWorkingProps, ZoomScaleProps } from "./renderPDF.types";
 PDFJS.GlobalWorkerOptions.workerSrc = WorkerMessageHandler;
-
-type PDFRendererProps = {
-    id: string;
-    src: string;
-    defaultPage?: number;
-    viewport?: GetViewportParameters;
-};
-
-type PDFWorkingProps = {
-    filename: string;
-    isLoading: boolean;
-    errors: object;
-    totalPages: number;
-    activePage: number;
-    scale: number;
-    render: () => Promise<void>;
-    onUpdateActivePage: (page: number) => void;
-    nextPage: () => void;
-    previousPage: () => void;
-    zoomIn: () => void;
-    zoomOut: () => void;
-};
 
 const DefaultParams: GetViewportParameters = {
     dontFlip: false,
     rotation: 0,
     scale: 5,
-};
-
-type ZoomScaleItemProps = { text: string; size: number };
-
-type ZoomScaleProps = {
-    [n: number]: ZoomScaleItemProps;
 };
 
 export const ZOOM_SCALE: ZoomScaleProps = {
@@ -130,16 +102,15 @@ const useRenderPDF = ({ id, src, defaultPage = 1, viewport = DefaultParams }: PD
     };
 
     useEffect(() => {
-        if(src){
-            const filename = src.replace(/^.*[\\/]/, '');
+        if (src) {
+            const filename = src.replace(/^.*[\\/]/, "");
 
-        if (filename) {
-            setFileName(filename);
-        } else {
-            setFileName("undefiled.pdf");
+            if (filename) {
+                setFileName(filename);
+            } else {
+                setFileName("undefiled.pdf");
+            }
         }
-        }
-        
     }, [src]);
 
     return {
