@@ -33,7 +33,9 @@ export default [
         plugins: [
             url(),
             peerDepsExternal(),
-            resolve(),
+            resolve({
+                extensions: [".css"],
+            }),
             commonjs(),
             typescript({ tsconfig: "./tsconfig.json" }),
             terser(),
