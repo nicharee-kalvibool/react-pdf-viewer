@@ -42,9 +42,7 @@ export default [
             //     modules: true,
             //     use: ["sass"],
             // }),
-            styles({
-                mode: "inject",
-            }),
+            styles(),
         ],
         external: ["react", "react-dom"],
     },
