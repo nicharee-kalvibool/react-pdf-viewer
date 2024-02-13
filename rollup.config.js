@@ -43,6 +43,11 @@ export default [
             //     use: ["sass"],
             // }),
             styles(),
+            postcss({
+                extract: false,
+                modules: true,
+                use: ["sass"],
+            }),
         ],
         external: ["react", "react-dom"],
     },
