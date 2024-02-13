@@ -1,16 +1,13 @@
-import url from "@rollup/plugin-url";
 import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 import typescript from "@rollup/plugin-typescript";
 import dts from "rollup-plugin-dts";
 import { terser } from "rollup-plugin-terser";
-import external from "rollup-plugin-peer-deps-external";
-import babel from "@rollup/plugin-babel";
-// import sass from "rollup-plugin-sass";
-// import postcss from "rollup-plugin-postcss";
-// import styles from "rollup-plugin-styles";
-import postcss from "rollup-plugin-postcss-modules";
-// import autoprefixer from "autoprefixer";
+import peerDepsExternal from "rollup-plugin-peer-deps-external";
+import sass from "rollup-plugin-sass";
+import postcss from "rollup-plugin-postcss";
+import url from "@rollup/plugin-url";
+import styles from "rollup-plugin-styles";
 
 const packageJson = require("./package.json");
 
@@ -32,19 +29,26 @@ export default [
             },
         ],
         plugins: [
-            external(),
             url(),
+            peerDepsExternal(),
             resolve(),
             commonjs(),
             typescript({ tsconfig: "./tsconfig.json" }),
             terser(),
-            babel({ exclude: "node_modules/**", babelHelpers: "runtime" }),
-            postcss({
-                extract: "main.css",
-                plugins: [autoprefixer()],
+            // sass(),
+            // postcss({
+            //     indentedSyntax: true,
+            //     extract: false,
+            //     modules: true,
+            //     use: ["sass"],
+            // }),
+            styles({
+                mode: "inject",
+                modules: true,
+                sass: sass
             }),
         ],
-        external: ["react", "react-dom", "classnames"],
+        external: ["react", "react-dom"],
     },
     {
         input: "src/index.ts",
