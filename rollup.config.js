@@ -5,10 +5,11 @@ import typescript from "@rollup/plugin-typescript";
 import dts from "rollup-plugin-dts";
 import { terser } from "rollup-plugin-terser";
 import external from "rollup-plugin-peer-deps-external";
+import babel from "@rollup/plugin-babel";
 // import sass from "rollup-plugin-sass";
 // import postcss from "rollup-plugin-postcss";
-import styles from "rollup-plugin-styles";
-// import postcss from "rollup-plugin-postcss-modules";
+// import styles from "rollup-plugin-styles";
+import postcss from "rollup-plugin-postcss-modules";
 // import autoprefixer from "autoprefixer";
 
 const packageJson = require("./package.json");
@@ -30,8 +31,20 @@ export default [
                 inlineDynamicImports: true,
             },
         ],
-        plugins: [external(), url(), resolve(), commonjs(), typescript({ tsconfig: "./tsconfig.json" }), terser(), styles()],
-        external: ["react", "react-dom"],
+        plugins: [
+            external(),
+            url(),
+            resolve(),
+            commonjs(),
+            typescript({ tsconfig: "./tsconfig.json" }),
+            terser(),
+            babel({ exclude: "node_modules/**", babelHelpers: "runtime" }),
+            postcss({
+                extract: "main.css",
+                plugins: [autoprefixer()],
+            }),
+        ],
+        external: ["react", "react-dom", "classnames"],
     },
     {
         input: "src/index.ts",
