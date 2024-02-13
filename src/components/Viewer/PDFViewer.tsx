@@ -4,7 +4,7 @@ import { isMobile, isTablet } from "react-device-detect";
 import useRenderPDF, { ZOOM_SCALE } from "../../utils/renderPDF";
 import { ChevronLeft, ChevronRight, Download, Loader, Maximize, Minimize, Minus, MoreVertical, Plus, ZoomIn } from "react-feather";
 import classNames from "classnames";
-import type { PdfViewerProps } from "./PDFViewer.types";
+import { PdfViewerProps } from "./PDFViewer.types";
 
 const regex = /(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/;
 

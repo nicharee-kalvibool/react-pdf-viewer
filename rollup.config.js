@@ -5,6 +5,9 @@ import dts from "rollup-plugin-dts";
 import { terser } from "rollup-plugin-terser";
 import peerDepsExternal from "rollup-plugin-peer-deps-external";
 import sass from "rollup-plugin-sass";
+import postcss from "rollup-plugin-postcss";
+import url from "@rollup/plugin-url";
+import styles from "rollup-plugin-styles";
 
 const packageJson = require("./package.json");
 
@@ -12,6 +15,12 @@ export default [
     {
         input: "src/index.ts",
         output: [
+            // {
+            //     file: packageJson.main,
+            //     format: "cjs",
+            //     sourcemap: true,
+            //     inlineDynamicImports: true,
+            // },
             {
                 file: packageJson.module,
                 format: "esm",
@@ -19,12 +28,30 @@ export default [
                 inlineDynamicImports: true,
             },
         ],
-        plugins: [peerDepsExternal(), resolve(), commonjs(), typescript({ tsconfig: "./tsconfig.json" }), terser(), sass()],
+        plugins: [
+            url(),
+            peerDepsExternal(),
+            resolve(),
+            commonjs(),
+            typescript({ tsconfig: "./tsconfig.json" }),
+            terser(),
+            // sass(),
+            // postcss({
+            //     indentedSyntax: true,
+            //     extract: false,
+            //     modules: true,
+            //     use: ["sass"],
+            // }),
+            styles({
+                mode: "inject",
+            }),
+        ],
         external: ["react", "react-dom"],
     },
     {
         input: "src/index.ts",
         output: [{ file: "dist/types.d.ts", format: "es", inlineDynamicImports: true }],
+        external: [/\.(sass|scss|css)$/],
         plugins: [dts()],
     },
 ];
