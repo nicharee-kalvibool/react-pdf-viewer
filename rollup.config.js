@@ -1,13 +1,15 @@
+import url from "@rollup/plugin-url";
 import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 import typescript from "@rollup/plugin-typescript";
 import dts from "rollup-plugin-dts";
 import { terser } from "rollup-plugin-terser";
-import peerDepsExternal from "rollup-plugin-peer-deps-external";
-import sass from "rollup-plugin-sass";
-import postcss from "rollup-plugin-postcss";
-import url from "@rollup/plugin-url";
+import external from "rollup-plugin-peer-deps-external";
+// import sass from "rollup-plugin-sass";
+// import postcss from "rollup-plugin-postcss";
 import styles from "rollup-plugin-styles";
+// import postcss from "rollup-plugin-postcss-modules";
+// import autoprefixer from "autoprefixer";
 
 const packageJson = require("./package.json");
 
@@ -28,20 +30,7 @@ export default [
                 inlineDynamicImports: true,
             },
         ],
-        plugins: [
-            url(),
-            peerDepsExternal(),
-            resolve(),
-            commonjs(),
-            typescript({ tsconfig: "./tsconfig.json" }),
-            terser(),
-            // styles(),
-            postcss({
-                extract: false,
-                modules: true,
-                sourceMap: true,
-            }),
-        ],
+        plugins: [external(), url(), resolve(), commonjs(), typescript({ tsconfig: "./tsconfig.json" }), terser(), styles()],
         external: ["react", "react-dom"],
     },
     {
