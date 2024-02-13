@@ -7,6 +7,7 @@ import peerDepsExternal from "rollup-plugin-peer-deps-external";
 // import sass from "rollup-plugin-sass";
 import postcss from "rollup-plugin-postcss";
 import url from "@rollup/plugin-url";
+// import postcss from "rollup-plugin-postcss-modules";
 // import styles from "rollup-plugin-styles";
 // import babel from "rollup-plugin-babel";
 // import postcssModules from "postcss-modules";
@@ -37,24 +38,13 @@ export default [
             commonjs(),
             typescript({ tsconfig: "./tsconfig.json" }),
             terser(),
-            // sass(),
-            // postcss({
-            //     indentedSyntax: true,
-            //     extract: false,
-            //     modules: true,
-            //     use: ["sass"],
-            // }),
-            // styles({
-            //     mode: "inject",
-            //     modules: true,
-            //     sass: sass,
-            // }),
             postcss({
-                getExportNamed: true,
-                extract: "dist/styles.css",
+                autoModules: true,
+                extract: "styles.css",
+                use: "sass",
             }),
         ],
-        external: ["react", "react-dom"],
+        external: ["react", "react-dom", "classnames"],
     },
     {
         input: "src/index.ts",
