@@ -39,9 +39,9 @@ export default [
             terser(),
             postcss({
                 plugins: [autoprefixer(), simplevars(), nested()],
-                inject: false,
                 extensions: [".css"],
                 extract: "react-pdf-viewer.css",
+                sourceMap: true,
                 // modules: {
                 //     localsConvention: "camelCase",
                 // },
