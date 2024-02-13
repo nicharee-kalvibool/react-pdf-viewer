@@ -35,6 +35,7 @@
     "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-postcss-modules": "^2.1.1",
     "rollup-plugin-sass": "^1.12.21",
+    "rollup-plugin-scss": "^4.0.0",
     "rollup-plugin-styles": "^4.0.0",
     "sass": "^1.70.0",
     "typescript": "^4.9.5",
