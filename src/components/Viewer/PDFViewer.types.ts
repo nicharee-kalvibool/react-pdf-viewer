@@ -1,3 +1,5 @@
-export type PdfViewerProps = {
+type PdfViewerProps = {
     src: string;
 };
+
+export type { PdfViewerProps };
