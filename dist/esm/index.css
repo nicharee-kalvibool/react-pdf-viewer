@@ -102,6 +102,7 @@
   border-radius: 15px;
   width: 100%;
   max-width: 210px;
+  height: -moz-fit-content;
   height: fit-content;
 }
 .PDFViewer-module_container__dUZZ5 .PDFViewer-module_canvasContainer__yNi5Y .PDFViewer-module_dropdownBackdrop__g9uUC .PDFViewer-module_option__VcE2K .PDFViewer-module_list__p67g- {
@@ -111,6 +112,7 @@
   background-color: #fff;
   border-radius: 10px;
   width: 100%;
+  height: -moz-fit-content;
   height: fit-content;
 }
 .PDFViewer-module_container__dUZZ5 .PDFViewer-module_canvasContainer__yNi5Y .PDFViewer-module_dropdownBackdrop__g9uUC .PDFViewer-module_option__VcE2K .PDFViewer-module_list__p67g- .PDFViewer-module_item__8NrPM {
@@ -126,7 +128,8 @@
   align-items: center;
   margin-left: 10px;
   font-size: 14px;
-  user-select: none;
+  -webkit-user-select: none;
+          user-select: none;
 }
 .PDFViewer-module_container__dUZZ5 .PDFViewer-module_canvasContainer__yNi5Y .PDFViewer-module_dropdownBackdrop__g9uUC .PDFViewer-module_option__VcE2K .PDFViewer-module_list__p67g- .PDFViewer-module_item__8NrPM:not(.PDFViewer-module_nonActive__Q-wZW):active {
   background-color: #eee;
@@ -149,7 +152,8 @@
 .PDFViewer-module_container__dUZZ5 .PDFViewer-module_canvasContainer__yNi5Y .PDFViewer-module_zoom__kt6eF .PDFViewer-module_scale__Haf4D {
   text-align: center;
   padding: 0 5px;
-  user-select: none;
+  -webkit-user-select: none;
+          user-select: none;
   min-width: 55px;
 }
 .PDFViewer-module_container__dUZZ5 .PDFViewer-module_canvasContainer__yNi5Y .PDFViewer-module_divider__EJQ9o {
@@ -158,11 +162,13 @@
   justify-content: center;
   padding: 0 5px;
   color: #000;
-  user-select: none;
+  -webkit-user-select: none;
+          user-select: none;
 }
 .PDFViewer-module_container__dUZZ5 .PDFViewer-module_canvasContainer__yNi5Y .PDFViewer-module_pageInfo__AoBNL {
   padding: 0 5px;
-  user-select: none;
+  -webkit-user-select: none;
+          user-select: none;
   min-width: 100px;
   line-height: 1;
 }
@@ -183,7 +189,8 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  user-select: none;
+  -webkit-user-select: none;
+          user-select: none;
 }
 .PDFViewer-module_actionBtn__u5-L4 .PDFViewer-module_icon__7yItj {
   font-size: 14px;
@@ -203,3 +210,4 @@
   pointer-events: none;
   cursor: default;
 }
+/*# sourceMappingURL=index.css.map */

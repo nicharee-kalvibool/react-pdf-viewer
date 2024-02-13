@@ -7,10 +7,9 @@ import peerDepsExternal from "rollup-plugin-peer-deps-external";
 // import sass from "rollup-plugin-sass";
 import postcss from "rollup-plugin-postcss";
 import url from "@rollup/plugin-url";
-// import postcss from "rollup-plugin-postcss-modules";
-// import styles from "rollup-plugin-styles";
-// import babel from "rollup-plugin-babel";
-// import postcssModules from "postcss-modules";
+import simplevars from 'postcss-simple-vars';
+import nested from 'postcss-nested';
+import autoprefixer from 'autoprefixer';
 
 const packageJson = require("./package.json");
 
@@ -39,9 +38,16 @@ export default [
             typescript({ tsconfig: "./tsconfig.json" }),
             terser(),
             postcss({
-                autoModules: true,
-                extract: "styles.css",
-                use: "sass",
+                sourceMap: true,
+
+                plugins: [autoprefixer(), simplevars(), nested()],
+                extensions: [".css", ".scss"],
+                extract: true,
+                modules: {
+                    localsConvention: "camelCase",
+                },
+                syntax: "postcss-scss",
+                use: ["sass"],
             }),
         ],
         external: ["react", "react-dom", "classnames"],
