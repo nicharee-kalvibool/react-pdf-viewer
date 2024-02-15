@@ -61,6 +61,14 @@
       "react-app/jest"
     ]
   },
+  "browser": {
+    "fs": false,
+    "path": false,
+    "os": false,
+    "http": false,
+    "https": false,
+    "canvas": false
+  },
   "browserslist": {
     "production": [
       ">0.2%",

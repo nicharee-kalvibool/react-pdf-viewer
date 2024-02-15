@@ -22,12 +22,8 @@ export default [
         plugins: [
             external(),
             resolve({
-                fallback: {
-                    fs: false,
-                    canvas: false,
-                    http: false,
-                    https: false,
-                },
+                browser: true,
+                preferBuiltins: false,
                 extensions: [".js", ".jsx"],
             }),
             commonjs(),
