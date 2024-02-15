@@ -16,7 +16,7 @@ export default [
         output: {
             file: packageJson.module,
             format: "esm",
-            sourcemap: true,
+            sourcemap: false,
             inlineDynamicImports: true,
         },
         plugins: [
@@ -31,7 +31,7 @@ export default [
             terser(),
             postcss({
                 plugins: [autoprefixer()],
-                extract: true,
+                extract: "style.css",
                 minimize: true,
             }),
             nodePolyfills(),

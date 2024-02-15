@@ -53,7 +53,6 @@ const PDFViewer = ({ src }: PdfViewerProps) => {
         await fetch(src)
             .then((response) => {
                 const file_name = response.headers.get("Content-Disposition")?.split('"')?.[0];
-                console.log({ file_name });
 
                 response.blob().then((blob) => {
                     let url = window.URL.createObjectURL(blob);
@@ -78,7 +77,7 @@ const PDFViewer = ({ src }: PdfViewerProps) => {
             {!isMobile && !isTablet ? (
                 <iframe
                     src={src}
-                    title="PDF Viewer"
+                    title="React PDF Viewer V 1.0.3"
                 />
             ) : (
                 <div className={styles.canvasContainer}>
@@ -211,10 +210,7 @@ const PDFViewer = ({ src }: PdfViewerProps) => {
                             </div>
                         </div>
                     </div>
-                    <div
-                        id="pdf-container"
-                        className={styles.canvasBox}
-                    >
+                    <div className={styles.canvasBox}>
                         <canvas id="pdf" />
                         <div className={classNames(styles.canvasLoading, { [styles.show]: isLoading })}>
                             <Loader size={26} />
