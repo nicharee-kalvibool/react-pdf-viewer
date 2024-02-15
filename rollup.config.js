@@ -40,11 +40,7 @@ export default [
             commonjs(),
             typescript({ tsconfig: "./tsconfig.json" }),
             terser(),
-            styles({
-                modules: true,
-                extensions: [".css"],
-                plugins: [autoprefixer(), simplevars(), nested()],
-            }),
+            styles(),
             // postcss({
             //     plugins: [autoprefixer(), simplevars(), nested()],
             //     extensions: [".css"],
