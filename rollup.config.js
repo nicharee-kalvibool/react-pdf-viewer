@@ -4,15 +4,8 @@ import typescript from "@rollup/plugin-typescript";
 import dts from "rollup-plugin-dts";
 import { terser } from "rollup-plugin-terser";
 import external from "rollup-plugin-peer-deps-external";
-
-// import sass from "rollup-plugin-sass";
 import postcss from "rollup-plugin-postcss";
-import url from "@rollup/plugin-url";
-// import babel from "rollup-plugin-babel";
-// import simplevars from "postcss-simple-vars";
-// import nested from "postcss-nested";
 import autoprefixer from "autoprefixer";
-// import styles from "rollup-plugin-styles";
 
 const packageJson = require("./package.json");
 
@@ -24,53 +17,20 @@ export default [
             format: "esm",
             sourcemap: true,
             inlineDynamicImports: true,
-            assetFileNames: "[name][extname]",
         },
         plugins: [
-            url(),
             external(),
-            resolve({
-                extensions: [".css"],
-            }),
+            resolve(),
             commonjs(),
             typescript({ tsconfig: "./tsconfig.json" }),
             terser(),
             postcss({
                 plugins: [autoprefixer()],
-                sourceMap: true,
                 extract: true,
                 minimize: true,
             }),
-            // styles({
-            //     mode: "inject",
-            //     modules: true,
-            // }),
-            // styles({
-            //     modules: true,
-            //     extensions: [".css", ".scss"],
-            //     // plugins: [postcss(), autoprefixer(), nested()],
-            //     mode: ["extract", "style.css"],
-            // }),
-            // postcss({
-            //     plugins: [autoprefixer(), simplevars(), nested()],
-            //     extensions: [".css"],
-            //     extract: true,
-            //     sourceMap: true,
-            //     // modules: {
-            //     //     localsConvention: "camelCase",
-            //     // },
-            //     // syntax: "postcss-scss",
-            //     // use: ["sass"],
-            // }),
-            // postcss({
-            //     modules: true,
-            //     extract: "styles.css",
-            //     inject: false,
-            //     extensions: [".scss", ".css"],
-            //     use: ["sass"],
-            // }),
         ],
-        external: ["react", "react-dom", "classnames"],
+        external: ["react", "react-dom", "classnames", "canvas", "fs"],
     },
     {
         input: "src/index.ts",
