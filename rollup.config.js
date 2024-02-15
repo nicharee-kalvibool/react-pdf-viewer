@@ -29,7 +29,6 @@ export default [
                 format: "esm",
                 sourcemap: true,
                 inlineDynamicImports: true,
-                assetFileNames: "[name]-[hash][extname]",
             },
         ],
         plugins: [
@@ -45,7 +44,8 @@ export default [
                 modules: true,
                 extensions: [".css", ".scss"],
                 // plugins: [postcss(), autoprefixer(), nested()],
-                mode: ["extract", "style.css"],
+                // mode: ["extract", "style.css"],
+                mode: ["inject", { container: "head", singleTag: true, prepend: true, attributes: { id: "global" } }],
             }),
             // postcss({
             //     plugins: [autoprefixer(), simplevars(), nested()],
