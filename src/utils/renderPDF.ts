@@ -43,10 +43,11 @@ const useRenderPDF = ({ id, src, defaultPage = 1, viewport = DefaultParams }: PD
                 const unscaledViewport = page.getViewport({ scale: 1 });
 
                 const canvas = document.getElementById(id) as HTMLCanvasElement;
+                if (canvas) {
+                }
                 const context = canvas.getContext("2d");
                 if (context) {
-                    context.clearRect(0, 0, canvas.width, canvas.height);
-                    context.beginPath();
+                    context.restore();
                 }
 
                 canvas.height = viewports.height * ZOOM_SCALE[scale].size;
