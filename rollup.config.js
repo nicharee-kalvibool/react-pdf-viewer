@@ -3,13 +3,15 @@ import commonjs from "@rollup/plugin-commonjs";
 import typescript from "@rollup/plugin-typescript";
 import dts from "rollup-plugin-dts";
 import { terser } from "rollup-plugin-terser";
-import peerDepsExternal from "rollup-plugin-peer-deps-external";
-import sass from "rollup-plugin-sass";
+import external from "rollup-plugin-peer-deps-external";
+
+// import sass from "rollup-plugin-sass";
 import postcss from "rollup-plugin-postcss";
 import url from "@rollup/plugin-url";
+// import babel from "rollup-plugin-babel";
 // import simplevars from "postcss-simple-vars";
 // import nested from "postcss-nested";
-// import autoprefixer from "autoprefixer";
+import autoprefixer from "autoprefixer";
 // import styles from "rollup-plugin-styles";
 
 const packageJson = require("./package.json");
@@ -18,21 +20,27 @@ export default [
     {
         input: "src/index.ts",
         output: {
-            name: "@react-pdf-viewer",
             file: packageJson.module,
             format: "esm",
             sourcemap: true,
             inlineDynamicImports: true,
+            assetFileNames: "[name][extname]",
         },
         plugins: [
             url(),
-            peerDepsExternal(),
+            external(),
             resolve({
                 extensions: [".css"],
             }),
             commonjs(),
             typescript({ tsconfig: "./tsconfig.json" }),
             terser(),
+            postcss({
+                plugins: [autoprefixer()],
+                sourceMap: true,
+                extract: true,
+                minimize: true,
+            }),
             // styles({
             //     mode: "inject",
             //     modules: true,
@@ -54,12 +62,13 @@ export default [
             //     // syntax: "postcss-scss",
             //     // use: ["sass"],
             // }),
-            postcss({
-                modules: true,
-                extract: "styles.css",
-                inject: false,
-                extensions: [".scss", ".css"],
-            }),
+            // postcss({
+            //     modules: true,
+            //     extract: "styles.css",
+            //     inject: false,
+            //     extensions: [".scss", ".css"],
+            //     use: ["sass"],
+            // }),
         ],
         external: ["react", "react-dom", "classnames"],
     },
