@@ -17,21 +17,12 @@ const packageJson = require("./package.json");
 export default [
     {
         input: "src/index.ts",
-        output: [
-            // {
-            //     file: packageJson.main,
-            //     format: "cjs",
-            //     sourcemap: true,
-            //     inlineDynamicImports: true,
-            // },
-            {
-                file: packageJson.module,
-                format: "esm",
-                sourcemap: true,
-                inlineDynamicImports: true,
-                assetFileNames: "[name]-[hash][extname]",
-            },
-        ],
+        output: {
+            file: packageJson.module,
+            format: "esm",
+            sourcemap: true,
+            inlineDynamicImports: true,
+        },
         plugins: [
             url(),
             peerDepsExternal(),
@@ -39,7 +30,7 @@ export default [
                 extensions: [".css"],
             }),
             commonjs(),
-            typescript({ tsconfig: "./tsconfig.json" }),
+            typescript({ tsconfig: "./tsconfig.json", declaration: true }),
             terser(),
             // styles({
             //     mode: "inject",
@@ -65,9 +56,7 @@ export default [
             postcss({
                 modules: true,
                 extract: "styles.css",
-                minimize: true,
                 inject: false,
-                sourceMap: true,
                 extensions: [".scss", ".css"],
                 use: ["sass"],
             }),
