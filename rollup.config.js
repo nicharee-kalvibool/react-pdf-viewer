@@ -41,7 +41,10 @@ export default [
             commonjs(),
             typescript({ tsconfig: "./tsconfig.json" }),
             terser(),
-            styles()
+            styles({
+                mode: "inject",
+                modules: true,
+            }),
             // styles({
             //     modules: true,
             //     extensions: [".css", ".scss"],
