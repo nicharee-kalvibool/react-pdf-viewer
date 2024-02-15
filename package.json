@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.js",
+  "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "dependencies": {
     "@babel/preset-env": "^7.23.9",

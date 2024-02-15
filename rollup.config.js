@@ -18,6 +18,7 @@ export default [
     {
         input: "src/index.ts",
         output: {
+            name: "@react-pdf-viewer",
             file: packageJson.module,
             format: "esm",
             sourcemap: true,
@@ -30,7 +31,7 @@ export default [
                 extensions: [".css"],
             }),
             commonjs(),
-            typescript({ tsconfig: "./tsconfig.json", declaration: true }),
+            typescript({ tsconfig: "./tsconfig.json" }),
             terser(),
             // styles({
             //     mode: "inject",
@@ -58,7 +59,6 @@ export default [
                 extract: "styles.css",
                 inject: false,
                 extensions: [".scss", ".css"],
-                use: ["sass"],
             }),
         ],
         external: ["react", "react-dom", "classnames"],
