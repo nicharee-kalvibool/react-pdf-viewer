@@ -5,7 +5,7 @@ import dts from "rollup-plugin-dts";
 import { terser } from "rollup-plugin-terser";
 import peerDepsExternal from "rollup-plugin-peer-deps-external";
 // import sass from "rollup-plugin-sass";
-import postcss from "rollup-plugin-postcss";
+// import postcss from "rollup-plugin-postcss";
 import url from "@rollup/plugin-url";
 // import simplevars from "postcss-simple-vars";
 // import nested from "postcss-nested";
@@ -29,6 +29,7 @@ export default [
                 format: "esm",
                 sourcemap: true,
                 inlineDynamicImports: true,
+                assetFileNames: "[name]-[hash][extname]",
             },
         ],
         plugins: [
@@ -40,13 +41,13 @@ export default [
             commonjs(),
             typescript({ tsconfig: "./tsconfig.json" }),
             terser(),
-            styles({
-                modules: true,
-                extensions: [".css", ".scss"],
-                // plugins: [postcss(), autoprefixer(), nested()],
-                // mode: ["extract", "style.css"],
-                mode: ["inject", { container: "head", singleTag: true, prepend: true, attributes: { id: "global" } }],
-            }),
+            styles()
+            // styles({
+            //     modules: true,
+            //     extensions: [".css", ".scss"],
+            //     // plugins: [postcss(), autoprefixer(), nested()],
+            //     mode: ["extract", "style.css"],
+            // }),
             // postcss({
             //     plugins: [autoprefixer(), simplevars(), nested()],
             //     extensions: [".css"],
