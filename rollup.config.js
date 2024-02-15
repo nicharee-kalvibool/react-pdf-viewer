@@ -10,6 +10,7 @@ import url from "@rollup/plugin-url";
 import simplevars from "postcss-simple-vars";
 import nested from "postcss-nested";
 import autoprefixer from "autoprefixer";
+import styles from "rollup-plugin-styles";
 
 const packageJson = require("./package.json");
 
@@ -39,17 +40,22 @@ export default [
             commonjs(),
             typescript({ tsconfig: "./tsconfig.json" }),
             terser(),
-            postcss({
-                plugins: [autoprefixer(), simplevars(), nested()],
+            styles({
+                modules: true,
                 extensions: [".css"],
-                extract: true,
-                sourceMap: true,
-                // modules: {
-                //     localsConvention: "camelCase",
-                // },
-                // syntax: "postcss-scss",
-                // use: ["sass"],
+                plugins: [autoprefixer(), simplevars(), nested()],
             }),
+            // postcss({
+            //     plugins: [autoprefixer(), simplevars(), nested()],
+            //     extensions: [".css"],
+            //     extract: true,
+            //     sourceMap: true,
+            //     // modules: {
+            //     //     localsConvention: "camelCase",
+            //     // },
+            //     // syntax: "postcss-scss",
+            //     // use: ["sass"],
+            // }),
         ],
         external: ["react", "react-dom", "classnames"],
     },
