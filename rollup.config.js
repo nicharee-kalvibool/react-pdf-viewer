@@ -6,6 +6,7 @@ import { terser } from "rollup-plugin-terser";
 import external from "rollup-plugin-peer-deps-external";
 import postcss from "rollup-plugin-postcss";
 import autoprefixer from "autoprefixer";
+import nodePolyfills from "rollup-plugin-polyfill-node";
 
 const packageJson = require("./package.json");
 
@@ -20,7 +21,14 @@ export default [
         },
         plugins: [
             external(),
-            resolve(),
+            resolve({
+                fallback: {
+                    fs: false,
+                    canvas: false,
+                    http: false,
+                    https: false,
+                },
+            }),
             commonjs(),
             typescript({ tsconfig: "./tsconfig.json" }),
             terser(),
@@ -29,6 +37,7 @@ export default [
                 extract: true,
                 minimize: true,
             }),
+            nodePolyfills(),
         ],
         external: ["react", "react-dom", "classnames", "canvas", "fs"],
     },
