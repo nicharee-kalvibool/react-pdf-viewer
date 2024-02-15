@@ -4,13 +4,13 @@ import typescript from "@rollup/plugin-typescript";
 import dts from "rollup-plugin-dts";
 import { terser } from "rollup-plugin-terser";
 import peerDepsExternal from "rollup-plugin-peer-deps-external";
-// import sass from "rollup-plugin-sass";
-// import postcss from "rollup-plugin-postcss";
+import sass from "rollup-plugin-sass";
+import postcss from "rollup-plugin-postcss";
 import url from "@rollup/plugin-url";
 // import simplevars from "postcss-simple-vars";
 // import nested from "postcss-nested";
 // import autoprefixer from "autoprefixer";
-import styles from "rollup-plugin-styles";
+// import styles from "rollup-plugin-styles";
 
 const packageJson = require("./package.json");
 
@@ -41,10 +41,10 @@ export default [
             commonjs(),
             typescript({ tsconfig: "./tsconfig.json" }),
             terser(),
-            styles({
-                mode: "inject",
-                modules: true,
-            }),
+            // styles({
+            //     mode: "inject",
+            //     modules: true,
+            // }),
             // styles({
             //     modules: true,
             //     extensions: [".css", ".scss"],
@@ -62,6 +62,15 @@ export default [
             //     // syntax: "postcss-scss",
             //     // use: ["sass"],
             // }),
+            postcss({
+                modules: true,
+                extract: "styles.css",
+                minimize: true,
+                inject: false,
+                sourceMap: true,
+                extensions: [".scss", ".css"],
+                use: ["sass"],
+            }),
         ],
         external: ["react", "react-dom", "classnames"],
     },
