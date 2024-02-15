@@ -28,6 +28,7 @@ export default [
                     http: false,
                     https: false,
                 },
+                extensions: [".js", ".jsx"],
             }),
             commonjs(),
             typescript({ tsconfig: "./tsconfig.json" }),
