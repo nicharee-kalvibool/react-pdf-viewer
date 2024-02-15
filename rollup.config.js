@@ -7,9 +7,9 @@ import peerDepsExternal from "rollup-plugin-peer-deps-external";
 // import sass from "rollup-plugin-sass";
 import postcss from "rollup-plugin-postcss";
 import url from "@rollup/plugin-url";
-import simplevars from "postcss-simple-vars";
-import nested from "postcss-nested";
-import autoprefixer from "autoprefixer";
+// import simplevars from "postcss-simple-vars";
+// import nested from "postcss-nested";
+// import autoprefixer from "autoprefixer";
 import styles from "rollup-plugin-styles";
 
 const packageJson = require("./package.json");
@@ -40,7 +40,12 @@ export default [
             commonjs(),
             typescript({ tsconfig: "./tsconfig.json" }),
             terser(),
-            styles(),
+            styles({
+                modules: true,
+                extensions: [".css", ".scss"],
+                // plugins: [postcss(), autoprefixer(), nested()],
+                mode: "inject",
+            }),
             // postcss({
             //     plugins: [autoprefixer(), simplevars(), nested()],
             //     extensions: [".css"],
