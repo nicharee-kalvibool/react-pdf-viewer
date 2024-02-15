@@ -40,7 +40,7 @@ export default [
             }),
             nodePolyfills(),
         ],
-        external: ["react", "react-dom", "classnames", "canvas", "fs"],
+        external: ["react", "react-dom"],
     },
     {
         input: "src/index.ts",
