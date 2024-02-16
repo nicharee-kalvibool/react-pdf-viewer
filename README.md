@@ -7,14 +7,14 @@ Easy React PDF Viewer for tablet/phone base on pdf-dist.js.
 ### Install
 
 ```bash
-npm i og-react-pdf-viewer
+npm i @ogs/react-pdf-viewer
 ```
 
 ### Importing
 
 ```js
-import PDFViewer from "og-react-pdf-viewer";
-import "og-react-pdf-viewer/dist/style.css";
+import PDFViewer from "@ogs/react-pdf-viewer";
+import "@ogs/react-pdf-viewer/dist/style.css";
 ```
 
 ### Usage
@@ -31,5 +31,5 @@ import "og-react-pdf-viewer/dist/style.css";
 
 ###  Node version requirements
 ```bash
-node: "18.5.0"
+node: ">18.5.0"
 ```
