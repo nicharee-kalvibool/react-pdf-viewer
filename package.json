@@ -1,6 +1,6 @@
 {
     "name": "@ogs/react-pdf-viewer",
-    "scope": "@ogs",
+    "scope": "ogs",
     "version": "1.0.0",
     "private": false,
     "main": "dist/index.esm.min.js",
