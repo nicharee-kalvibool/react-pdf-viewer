@@ -27,7 +27,7 @@ import "@ogs/react-pdf-viewer/dist/style.css";
 
 | Prop name | Description | Default |
 | --------- | ----------- | ------- |
-| src | imported using `import … from …` or from file input form element or an object with parameters (`"url"` - URL) | n/a |
+| src | imported using `import … from …` or `"url"` - URL | n/a |
 
 ###  Node version requirements
 ```bash
