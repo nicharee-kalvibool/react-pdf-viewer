@@ -1,7 +1,7 @@
 {
     "name": "og-react-pdf-viewer",
     "version": "1.0.0",
-    "private": true,
+    "private": false,
     "main": "dist/index.esm.min.js",
     "module": "dist/index.esm.min.js",
     "types": "dist/index.d.ts",
@@ -50,7 +50,9 @@
         "build": "npm run prebuild && rollup -c",
         "rollup-watch": "rollup -c -w",
         "test": "react-scripts test",
-        "eject": "react-scripts eject"
+        "eject": "react-scripts eject",
+        "prepublish": "tsc --emitDeclarationOnly",
+        "publish": ""
     },
     "files": [
         "dist"
