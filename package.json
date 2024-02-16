@@ -1,5 +1,5 @@
 {
-    "name": "react-pdf-viewer",
+    "name": "@ogs/react-pdf-viewer",
     "scope": "@ogs",
     "version": "1.0.0",
     "private": false,
