@@ -1,6 +1,6 @@
 {
     "name": "og-react-pdf-viewer",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "private": false,
     "main": "dist/index.esm.min.js",
     "module": "dist/index.esm.min.js",
