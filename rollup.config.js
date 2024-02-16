@@ -40,7 +40,7 @@ export default [
     },
     {
         input: "src/index.ts",
-        output: [{ file: "dist/types.d.ts", format: "es", inlineDynamicImports: true }],
+        output: [{ file: "dist/index.d.ts", format: "es", inlineDynamicImports: true }],
         external: [/\.(sass|scss|css)$/],
         plugins: [dts()],
     },

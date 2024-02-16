@@ -6,7 +6,7 @@
         "skipLibCheck": true,
         "removeComments": true,
         "preserveConstEnums": true,
-        "noImplicitAny": false,
+        "noImplicitAny": true,
         "strictNullChecks": false,
         "allowSyntheticDefaultImports": true,
         "strict": true,

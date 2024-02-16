@@ -35,4 +35,5 @@ type ZoomScaleProps = {
     [n: number]: ZoomScaleItemProps;
 };
 
+declare module "@ogs-ltd/react-pdf-viewer";
 export { type PDFRendererProps, type PDFWorkingProps, type PdfViewerProps, type ZoomScaleItemProps, type ZoomScaleProps, PDFViewer as default };
