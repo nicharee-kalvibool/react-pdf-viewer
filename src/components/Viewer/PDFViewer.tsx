@@ -179,7 +179,7 @@ const PDFViewer = ({ src }: PdfViewerProps) => {
                         {/* <div className={styles.certerSection}></div> */}
                         <div className={styles.rightSection}>
                             <div
-                                className={classNames(styles.actionBtn, { [styles.disabled]: activePage <= 1 })}
+                                className={classNames(styles.actionBtn, { [styles.disabled]: activePage <= 1 || open_option })}
                                 onClick={() => handlePreviousPage()}
                             >
                                 <ChevronLeft
@@ -191,7 +191,9 @@ const PDFViewer = ({ src }: PdfViewerProps) => {
                                 หน้า {activePage} จาก {totalPages}
                             </span>
                             <div
-                                className={classNames(styles.actionBtn, { [styles.disabled]: totalPages <= activePage })}
+                                className={classNames(styles.actionBtn, styles.last, {
+                                    [styles.disabled]: totalPages <= activePage || open_option,
+                                })}
                                 onClick={() => handleNextPage()}
                             >
                                 <ChevronRight

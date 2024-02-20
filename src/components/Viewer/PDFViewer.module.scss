@@ -230,4 +230,8 @@
         pointer-events: none;
         cursor: default;
     }
+
+    &.last {
+        margin-left: 10px;
+    }
 }
