@@ -136,7 +136,7 @@ const PDFViewer = ({ src }: PdfViewerProps) => {
                                         </div>
                                         <span className={classNames(styles.scale)}>{ZOOM_SCALE[scale].text}</span>
                                         <div
-                                            className={classNames(styles.actionBtn, styles.black, { [styles.disabled]: scale >= 5 })}
+                                            className={classNames(styles.actionBtn, styles.black, { [styles.disabled]: scale >= 4 })}
                                             onClick={(e) => {
                                                 e.stopPropagation();
                                                 zoomIn();

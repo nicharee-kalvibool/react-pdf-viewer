@@ -13,19 +13,18 @@ const DefaultParams: GetViewportParameters = {
 };
 
 export const ZOOM_SCALE: ZoomScaleProps = {
-    [0]: { text: "50%", size: 0.5 },
-    [1]: { text: "75%", size: 0.75 },
-    [2]: { text: "90%", size: 0.9 },
-    [3]: { text: "100%", size: 1 },
-    [4]: { text: "125%", size: 1.25 },
-    [5]: { text: "150%", size: 1.5 },
+    [0]: { text: "50%", size: 0.25 },
+    [1]: { text: "75%", size: 0.5 },
+    [2]: { text: "100%", size: 0.75 },
+    [3]: { text: "125%", size: 0.9 },
+    [4]: { text: "150%", size: 1 },
 };
 
 const useRenderPDF = ({ id, src, defaultPage = 1, viewport = DefaultParams }: PDFRendererProps): PDFWorkingProps => {
     const [is_loading, setIsLoading] = useState<boolean>(false);
     const [errors, setErrors] = useState({});
     const [total_pages, setTotalPages] = useState<number>(0);
-    const [scale, setScale] = useState<number>(3);
+    const [scale, setScale] = useState<number>(2);
     const [active_page, setActivePage] = useState(defaultPage);
     const [file_name, setFileName] = useState<string>("");
 
@@ -91,7 +90,7 @@ const useRenderPDF = ({ id, src, defaultPage = 1, viewport = DefaultParams }: PD
     };
 
     const handleZoomIn = (): void => {
-        if (scale < 5) {
+        if (scale < 4) {
             setScale(scale + 1);
         }
     };
