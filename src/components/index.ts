@@ -1,1 +1,1 @@
-export { type PdfViewerProps, default } from "./Viewer";
+export { type PdfViewerProps, type OptionProps, default } from "./Viewer";

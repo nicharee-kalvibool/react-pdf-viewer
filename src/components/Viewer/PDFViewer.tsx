@@ -8,7 +8,18 @@ import { PdfViewerProps } from "./PDFViewer.types";
 
 const regex = /(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/;
 
-const PDFViewer = ({ src }: PdfViewerProps) => {
+const DEFAULT_PROPS: PdfViewerProps = {
+    src: null,
+    pageInfoTextFormat: (curent: number, totals: number) => `หน้า ${curent} จาก ${totals}`,
+    optionText: {
+        save: "บันทึกไฟล์",
+        save_loading: "กำลังบันทึกไฟล์",
+        zoom: "ซูม",
+        expand: "ขยายเต็มจอ",
+        exit_expand: "ออกจากโหมดเต็มจอ",
+    },
+};
+const PDFViewer = ({ src, pageInfoTextFormat, optionText }: PdfViewerProps = DEFAULT_PROPS) => {
     const [open_option, setOpenOption] = useState(false);
     const [expand, setExpand] = useState(false);
     const [is_loading_download, setIsLoadingDownload] = useState(false);
@@ -112,7 +123,11 @@ const PDFViewer = ({ src }: PdfViewerProps) => {
                                         />
                                     )}
 
-                                    <span>{is_loading_download ? "กำลังบันทึกไฟล์" : "บันทึกไฟล์"}</span>
+                                    <span>
+                                        {is_loading_download
+                                            ? optionText?.save_loading || "กำลังบันทึกไฟล์"
+                                            : optionText?.save || "บันทึกไฟล์"}
+                                    </span>
                                 </div>
                                 <div className={styles.lineDivider} />
                                 <div className={classNames(styles.item, styles.nonActive)}>
@@ -120,7 +135,7 @@ const PDFViewer = ({ src }: PdfViewerProps) => {
                                         size={14}
                                         className={styles.icon}
                                     />
-                                    <span>ซูม</span>
+                                    <span>{optionText?.zoom || "ซูม"}</span>
                                     <div className={styles.zoom}>
                                         <div
                                             className={classNames(styles.actionBtn, styles.black, { [styles.disabled]: scale <= 0 })}
@@ -167,7 +182,9 @@ const PDFViewer = ({ src }: PdfViewerProps) => {
                                         />
                                     )}
 
-                                    <span>{expand ? "ออกจากโหมดเต็มจอ" : "ขยายเต็มจอ"}</span>
+                                    <span>
+                                        {expand ? optionText?.exit_expand || "ออกจากโหมดเต็มจอ" : optionText?.expand || "ขยายเต็มจอ"}
+                                    </span>
                                 </div>
                             </div>
                         </div>
@@ -187,9 +204,7 @@ const PDFViewer = ({ src }: PdfViewerProps) => {
                                     className={styles.icon}
                                 />
                             </div>
-                            <span className={classNames(styles.white, styles.pageInfo)}>
-                                หน้า {activePage} จาก {totalPages}
-                            </span>
+                            <span className={classNames(styles.white, styles.pageInfo)}>{pageInfoTextFormat(activePage, totalPages)}</span>
                             <div
                                 className={classNames(styles.actionBtn, styles.last, {
                                     [styles.disabled]: totalPages <= activePage || open_option,

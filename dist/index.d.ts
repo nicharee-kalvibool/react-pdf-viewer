@@ -1,11 +1,20 @@
 import * as react_jsx_runtime from 'react/jsx-runtime';
 import { GetViewportParameters } from 'pdfjs-dist/types/src/display/api';
 
+type OptionProps = {
+    save: string;
+    save_loading: string;
+    zoom: string;
+    expand: string;
+    exit_expand: string;
+};
 type PdfViewerProps = {
     src: string;
+    pageInfoTextFormat?: (curent: number, totals: number) => string;
+    optionText?: OptionProps;
 };
 
-declare const PDFViewer: ({ src }: PdfViewerProps) => react_jsx_runtime.JSX.Element;
+declare const PDFViewer: ({ src, pageInfoTextFormat, optionText }?: PdfViewerProps) => react_jsx_runtime.JSX.Element;
 
 type PDFRendererProps = {
     id: string;
@@ -36,4 +45,4 @@ type ZoomScaleProps = {
 };
 
 declare module "@ogs-ltd/react-pdf-viewer";
-export { type PDFRendererProps, type PDFWorkingProps, type PdfViewerProps, type ZoomScaleItemProps, type ZoomScaleProps, PDFViewer as default };
+export { type OptionProps, type PDFRendererProps, type PDFWorkingProps, type PdfViewerProps, type ZoomScaleItemProps, type ZoomScaleProps, PDFViewer as default };
