@@ -14,7 +14,10 @@ type PdfViewerProps = {
     optionText?: OptionProps;
 };
 
-declare const PDFViewer: ({ src, pageInfoTextFormat, optionText }?: PdfViewerProps) => react_jsx_runtime.JSX.Element;
+declare const PDFViewer: {
+    ({ src, pageInfoTextFormat, optionText }: PdfViewerProps): react_jsx_runtime.JSX.Element;
+    defaultProps: PdfViewerProps;
+};
 
 type PDFRendererProps = {
     id: string;

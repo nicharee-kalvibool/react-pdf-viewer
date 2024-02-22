@@ -23,5 +23,12 @@
         "emitDeclarationOnly": true
     },
     "include": ["src/**/*", "src/**/*.js", "src/declaration.d.ts"],
-    "exclude": ["dist", "node_modules", "src/**/*.test.tsx", "src/**/*.stories.tsx", "**/*.spec.ts"]
+    "exclude": [
+        "dist",
+        "node_modules",
+        "src/**/*.test.tsx",
+        "src/**/*.stories.tsx",
+        "**/*.spec.ts",
+        "**/*.dev.tsx"
+    ],
 }
