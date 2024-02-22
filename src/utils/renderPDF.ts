@@ -13,11 +13,11 @@ const DefaultParams: GetViewportParameters = {
 };
 
 export const ZOOM_SCALE: ZoomScaleProps = {
-    [0]: { text: "50%", size: 0.25 },
-    [1]: { text: "75%", size: 0.5 },
-    [2]: { text: "100%", size: 0.75 },
-    [3]: { text: "125%", size: 0.9 },
-    [4]: { text: "150%", size: 1 },
+    0: { text: "50%", size: 0.25 },
+    1: { text: "75%", size: 0.5 },
+    2: { text: "100%", size: 0.75 },
+    3: { text: "125%", size: 0.9 },
+    4: { text: "150%", size: 1 },
 };
 
 const useRenderPDF = ({ id, src, defaultPage = 1, viewport = DefaultParams }: PDFRendererProps): PDFWorkingProps => {

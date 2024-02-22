@@ -22,3 +22,10 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+/src/App.tsx
+/src/App.css
+/src/index.tsx
+/src/index.dev.tsx
+/src/index.css
+/src/assets/example/pdf/test-pdf.pdf

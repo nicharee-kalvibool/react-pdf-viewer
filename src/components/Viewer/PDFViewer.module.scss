@@ -59,6 +59,13 @@
             .rightSection {
                 display: flex;
                 align-items: center;
+
+                .infoSection {
+                    display: flex;
+                    align-items: center;
+                    flex-wrap: nowrap;
+                    padding-right: 10px;
+                }
             }
         }
 
@@ -184,8 +191,8 @@
         .pageInfo {
             padding: 0 5px;
             user-select: none;
-            min-width: 100px;
             line-height: 1;
+            white-space: nowrap;
         }
     }
 }

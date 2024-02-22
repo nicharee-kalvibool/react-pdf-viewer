@@ -6,7 +6,7 @@ import { ChevronLeft, ChevronRight, Download, Loader, Maximize, Minimize, Minus,
 import classNames from "classnames";
 import { PdfViewerProps } from "./PDFViewer.types";
 
-const regex = /(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/;
+const regex = new RegExp("/(http|https|ftp|ftps)://[a-zA-Z0-9-.]+.[a-zA-Z]{2,3}(/S*)?/");
 
 const DEFAULT_PROPS: PdfViewerProps = {
     src: null,
@@ -19,7 +19,8 @@ const DEFAULT_PROPS: PdfViewerProps = {
         exit_expand: "ออกจากโหมดเต็มจอ",
     },
 };
-const PDFViewer = ({ src, pageInfoTextFormat, optionText }: PdfViewerProps = DEFAULT_PROPS) => {
+
+const PDFViewer = ({ src, pageInfoTextFormat, optionText }: PdfViewerProps) => {
     const [open_option, setOpenOption] = useState(false);
     const [expand, setExpand] = useState(false);
     const [is_loading_download, setIsLoadingDownload] = useState(false);
@@ -195,27 +196,32 @@ const PDFViewer = ({ src, pageInfoTextFormat, optionText }: PdfViewerProps = DEF
                         </div>
                         {/* <div className={styles.certerSection}></div> */}
                         <div className={styles.rightSection}>
-                            <div
-                                className={classNames(styles.actionBtn, { [styles.disabled]: activePage <= 1 || open_option })}
-                                onClick={() => handlePreviousPage()}
-                            >
-                                <ChevronLeft
-                                    size={16}
-                                    className={styles.icon}
-                                />
+                            <div className={styles.infoSection}>
+                                <div
+                                    className={classNames(styles.actionBtn, { [styles.disabled]: activePage <= 1 || open_option })}
+                                    onClick={() => handlePreviousPage()}
+                                >
+                                    <ChevronLeft
+                                        size={16}
+                                        className={styles.icon}
+                                    />
+                                </div>
+                                <span className={classNames(styles.white, styles.pageInfo)}>
+                                    {pageInfoTextFormat(activePage, totalPages)}
+                                </span>
+                                <div
+                                    className={classNames(styles.actionBtn, {
+                                        [styles.disabled]: totalPages <= activePage || open_option,
+                                    })}
+                                    onClick={() => handleNextPage()}
+                                >
+                                    <ChevronRight
+                                        size={16}
+                                        className={styles.icon}
+                                    />
+                                </div>
                             </div>
-                            <span className={classNames(styles.white, styles.pageInfo)}>{pageInfoTextFormat(activePage, totalPages)}</span>
-                            <div
-                                className={classNames(styles.actionBtn, styles.last, {
-                                    [styles.disabled]: totalPages <= activePage || open_option,
-                                })}
-                                onClick={() => handleNextPage()}
-                            >
-                                <ChevronRight
-                                    size={16}
-                                    className={styles.icon}
-                                />
-                            </div>
+
                             <div
                                 className={styles.actionBtn}
                                 onClick={() => setOpenOption(!open_option)}
@@ -238,5 +244,7 @@ const PDFViewer = ({ src, pageInfoTextFormat, optionText }: PdfViewerProps = DEF
         </div>
     );
 };
+
+PDFViewer.defaultProps = DEFAULT_PROPS;
 
 export default PDFViewer;
